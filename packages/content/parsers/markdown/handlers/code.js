@@ -62,7 +62,9 @@ const prismHighlighter = (rawCode, language, { lineHighlights, fileName }, { h, 
    * Set pre as a child
    */
   childs.push(h(node, 'pre', props, [
-    h(node, 'code', [u('raw', code)])
+    language.includes("dartpad")
+      ? h(node, 'code', { className: [`language-${language}`] }, [u('raw', escapeHtml(rawCode))])
+      : h(node, 'code', [u('raw', code)])
   ]))
 
   return h(node.position, 'div', { className: ['nuxt-content-highlight'] }, childs)

@@ -78,7 +78,16 @@ export default {
         // Twitter Card
         { hid: 'twitter:title', name: 'twitter:title', content: this.document.title },
         { hid: 'twitter:description', name: 'twitter:description', content: this.document.description }
-      ]
+      ],
+      script: this.document.dartpad
+                ? [
+                    {
+                      src: 'https://dartpad.dev/inject_embed.dart.js',
+                      defer: true,
+                      body: true,
+                    }
+                  ]
+                : []
     }
   },
   computed: {
@@ -95,9 +104,11 @@ export default {
       const blocks = document.getElementsByClassName('nuxt-content-highlight')
 
       for (const block of blocks) {
-        const CopyButton = Vue.extend(AppCopyButton)
-        const component = new CopyButton().$mount()
-        block.appendChild(component.$el)
+        if(!block.firstChild.className.includes('language-text')) {
+          const CopyButton = Vue.extend(AppCopyButton)
+          const component = new CopyButton().$mount()
+          block.appendChild(component.$el)
+        }
       }
     }, 100)
   }

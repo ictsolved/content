@@ -10,7 +10,7 @@
   "dependencies": {
     "@docsearch/css": "^1.0.0-alpha.28",
     "@docsearch/js": "^1.0.0-alpha.28",
-    "@nuxt/content": "^1.15.1",
+    "@nuxt/content": "link:../content",
     "@nuxt/types": "^2.15.2",
     "@nuxtjs/color-mode": "^2.0.3",
     "@nuxtjs/google-fonts": "1.2.0",
