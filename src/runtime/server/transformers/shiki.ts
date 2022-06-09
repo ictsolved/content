@@ -62,6 +62,12 @@ const highlightInline = async (node) => {
 const highlightBlock = async (node) => {
   const { code, language: lang, highlights = [] } = node.props
 
+  // Dartpad Support
+  if(lang.includes('dartpad')) {
+    node.children[0].children[0].props.className = [`language-${lang}`]
+    return node;
+  }
+
   // Fetch highlighted tokens
   const lines = await $fetch(withContentBase('highlight'), {
     method: 'POST',
